@@ -53,6 +53,5 @@ exports.compare=(req,res)=>{
             message:error.message
         });
     };
-
     p.then(respond).catch(error);
 }
