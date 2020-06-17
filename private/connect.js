@@ -8,6 +8,7 @@ const info={
     password: config.pw,
     database: config.database
 }
+
 module.exports = {
     create:()=>{
         return mysql.createConnection(info);
