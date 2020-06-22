@@ -8,6 +8,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 app.set('jwt-secret',config.secret);
+app.set('client_id',config.client_id);
+app.set('client_secret',config.client_secret);
 
 app.use('/api',require('./router/api'));
 
