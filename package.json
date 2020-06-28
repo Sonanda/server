@@ -1,7 +1,7 @@
 {
   "name": "rest-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "aibee rest-api",
   "main": "app.js",
   "dependencies": {
     "express": "^4.17.1",
@@ -19,7 +19,7 @@
     "type": "git",
     "url": "git+https://github.com/Sonanda/rest-api.git"
   },
-  "author": "",
+  "author": "kimjaenam",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Sonanda/rest-api/issues"
