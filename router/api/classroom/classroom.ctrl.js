@@ -15,19 +15,7 @@ exports.getLink=async(req,res)=>{
                 'https://www.googleapis.com/auth/classroom.coursework.me',
                 'https://www.googleapis.com/auth/classroom.coursework.me.readonly',
                 'https://www.googleapis.com/auth/classroom.coursework.students',
-                'https://www.googleapis.com/auth/classroom.coursework.students.readonly',
-                'https://www.googleapis.com/auth/classroom.guardianlinks.me.readonly',
-                'https://www.googleapis.com/auth/classroom.guardianlinks.students',
-                'https://www.googleapis.com/auth/classroom.guardianlinks.students.readonly',
-                'https://www.googleapis.com/auth/classroom.profile.emails',
-                'https://www.googleapis.com/auth/classroom.profile.photos',
-                'https://www.googleapis.com/auth/classroom.push-notifications',
-                'https://www.googleapis.com/auth/classroom.rosters',
-                'https://www.googleapis.com/auth/classroom.rosters.readonly',
-                'https://www.googleapis.com/auth/classroom.student-submissions.me.readonly',
-                'https://www.googleapis.com/auth/classroom.student-submissions.students.readonly',
-                'https://www.googleapis.com/auth/classroom.topics',
-                'https://www.googleapis.com/auth/classroom.topics.readonly'
+                'https://www.googleapis.com/auth/classroom.coursework.students.readonly'
             ]
     });
     res.send(authUrl);
@@ -117,38 +105,6 @@ exports.getWork=async(req,res)=>{
     const classroom=google.classroom({version: 'v1',auth: oAuth2Client});
     const p=new Promise((resolve,reject)=>{
         classroom.courses.courseWork.list(token,(err,docs)=>{
-            if(err) reject(err);
-            resolve(docs);
-        });
-    });
-    const respond=(docs)=>{
-        res.status(200).json({
-            "docs": docs.data
-        });
-    };
-    const error=(error)=>{
-        res.status(403).json({
-            message:error.message
-        });
-    };
-    p.then(respond).catch(error);
-}
-exports.getStudents=async(req,res)=>{
-    const client_secret=req.app.get('client_secret');
-    const client_id=req.app.get('client_id');
-    const redirect_uri="urn:ietf:wg:oauth:2.0:oob";
-    const oAuth2Client=await new google.auth.OAuth2(client_id,client_secret,redirect_uri);
-
-    const token={
-        "access_token":req.body.access_token,
-        "courseId":req.body.classid
-    };
-
-    oAuth2Client.setCredentials(token);
-    
-    const classroom=google.classroom({version: 'v1',auth: oAuth2Client});
-    const p=new Promise((resolve,reject)=>{
-        classroom.courses.students.list(token,(err,docs)=>{
             if(err) reject(err);
             resolve(docs);
         });
