@@ -1,56 +1,55 @@
 const jwt=require('jsonwebtoken');
+const {User}=require('../../../models');
 
-exports.generate=(req,res)=>{
-    const secret=req.app.get('jwt-secret')
-    const p=new Promise((resolve,reject)=>{
-        jwt.sign(
-            req.body, 
-            secret, 
-            {
-                expiresIn:'7d',
-                issuer:'velopert.com',
-                subject:'userInfo'
-            },(err,token)=>{
-                if(err) reject(err);
-                resolve(token);
-            }
-        );
-    });
-    const respond=(token)=>{
-        res.status(200).json({
-            token
-        });
-    };
-    const error=(error)=>{
-        res.status(403).json({
-            message:error.message
-        });
-    };
-    p.then(respond).catch(error);
+exports.getData=async(req,res)=>{
+    const token=req.headers['x-access-token']||req.query.token;
+    if(!token) res.send({message:"token is not unvalued"});
+    const json=jwt.verify(token,req.app.get('jwt-secret'));
+    res.status(200).send(json);
 }
-exports.compare=(req,res)=>{
-    const token=req.headers['x-access-token']||req.body.token;
-
-    if(!token){
-        return res.status(403).json({
-            message:'token is not unvalued'
-        });
-    }
-    const p=new Promise((resolve,reject)=>{
-        jwt.verify(token,req.app.get('jwt-secret'),(err, decoded)=>{
-            if(err) reject(err);
-            resolve(decoded);
-        });
+exports.login=async(req,res)=>{
+    const secret=req.app.get('jwt-secret');
+    let docs=await User.findAll({
+        where:{email:req.body.email}
     });
-    const respond=(token)=>{
-        res.status(200).json({
-            info:token
-        });
-    };
-    const error=(error)=>{
-        res.status(403).json({
-            message:error.message
-        });
-    };
-    p.then(respond).catch(error);
+    if(docs.length>0){
+        const token=await jwt.sign(docs[0].dataValues,secret);
+        res.status(201).send({"x-access-token": token});
+    } else{
+        docs=await User.create({email:req.body.email});
+        const token=await jwt.sign({
+            email: docs.dataValues.email,
+            s_type: null,
+            s_region: null,
+            s_name: null,
+            access_token: null,
+            refresh_toke: null
+        },secret);
+        res.status(201).send({"x-access-token": token});
+    }
+}
+exports.updateData1=async(req,res)=>{
+    const update=await User.update({
+        s_type: req.body.type,
+        s_region: req.body.region,
+        s_name: req.body.name
+    },{where: {email:req.body.email}});
+    const status=update[0]===0?204:201;
+    const docs=await User.findAll({where:{email:req.body.email}});
+    const secret=req.app.get('jwt-secret');
+    const token=await jwt.sign({
+        email: req.body.email,
+        type: req.body.type,
+        region: req.body.region,
+        name: req.body.name,
+        access_token: docs[0].dataValues.access_token,
+        refresh_token: docs[0].dataValues.refresh_token
+    },secret);
+    res.status(status).send({"x-access-token": token});
+}
+exports.updateData2=async(req,res)=>{
+    await User.update(req.body,{where: {email:req.body.email}});
+    const secret=req.app.get('jwt-secret');
+    const token=await jwt.sign(req.body,secret);
+    res.status(201).send({"x-access-token": token});
 }
