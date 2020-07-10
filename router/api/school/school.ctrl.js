@@ -35,7 +35,7 @@ exports.getMeal=async(req,res)=>{
         req.query=meals;
     }
 
-    res.send(req.query);
+    res.status(200).send(req.query);
 }
 exports.getSchedule=async(req,res)=>{
     req=convertSchool(req);
@@ -59,7 +59,7 @@ exports.getSchedule=async(req,res)=>{
     }else{
         req.query=calendar;
     }
-    res.send(req.query);
+    res.status(200).send(req.query);
 }
 const convertSchool=req=>{
     let region=req.query.region;
