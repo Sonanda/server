@@ -19,11 +19,11 @@ module.exports=(sequelize,DataTypes)=>{
             allowNull: true
         },
         access_token: {
-            type: DataTypes.STRING(100),
+            type: DataTypes.STRING(200),
             allowNull: true
         },
         refresh_token: {
-            type: DataTypes.STRING(100),
+            type: DataTypes.STRING(200),
             allowNull: true
         }
     }, 
