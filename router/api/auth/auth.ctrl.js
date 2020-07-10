@@ -48,8 +48,16 @@ exports.updateData1=async(req,res)=>{
     res.status(status).send({"x-access-token": token});
 }
 exports.updateData2=async(req,res)=>{
-    await User.update(req.body,{where: {email:req.body.email}});
     const secret=req.app.get('jwt-secret');
+    const update=await User.update({
+        email: req.body.email,
+        s_type: req.body.type,
+        s_region: req.body.region,
+        s_name: req.body.name,
+        access_token: req.body.access_token,
+        refresh_token: req.body.refresh_token
+    },{where: {email:req.body.email}});
+    const status=update[0]===0?204:201;
     const token=await jwt.sign(req.body,secret);
-    res.status(201).send({"x-access-token": token});
+    res.status(status).send({"x-access-token": token});
 }
