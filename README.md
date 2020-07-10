@@ -24,6 +24,7 @@
 - 폴더 `./private`에 [config.js](#configjs)파일을 **반드시** 만들어 주세요. 본 레포지토리에는 각 파일의 양식이 들어가 있습니다.
 - [구글클래스룸 API](https://developers.google.com/classroom)를 사용할 경우 **반드시** client id를 발급받아야합니다. client id를 발급받는 방법은 [구글클래스룸 API](https://developers.google.com/classroom)를 참고하세요.
 - [구글클래스룸 API](https://developers.google.com/classroom)를 사용할 경우 https프로토콜로 **반드시** 전환해주세요. (보안 문제로 인해 토큰 uri가 작동하지 않을 수 있음)
+- [다이얼로그플로우 API](https://cloud.google.com/dialogflow/docs)를 사용할 경우 **반드시** project Id와 private Key를 발급받아야합니다. project Isd를 발급받는 방법은 [다이얼로그플로우 API](https://cloud.google.com/dialogflow/docs)를 참고하세요. private Key를 발급받는 방법은 [구글 키 생성 및 관리](https://cloud.google.com/iam/docs/creating-managing-service-account-keys?hl=ko)를 참고하세요
 ## English
 ### How to install
 #### Windows
@@ -45,6 +46,7 @@
 - Please create [config.js](#configjs) file in the folder `./private`. This repertoire contains forms for [config.js](#configjs) file
 - If you use [Google Classroom API](https://developers.google.com/classroom), you must obtain a client id. Please refer to the [Google Classroom API](https://developers.google.com/classroom) to issue a client ID.
 - If you use [Google Classroom API](https://developers.google.com/classroom), please switch to https protocol. (Security issues may prevent token uri from working)
+- If you use [Dialogflow API](https://cloud.google.com/dialogflow/docs), you must obtain a project Id and private Key. Please refer to the [Dialogflow API](https://cloud.google.com/dialogflow/docs) to issue a project ID. Please refer to the [create Google key and management](https://cloud.google.com/iam/docs/creating-managing-service-account-keys?hl=ko) to issue a private Key
 # config.js
 ```js
 module.exports={
@@ -54,6 +56,9 @@ module.exports={
     "pw": YOUR_MYSQL_PASSWORD,
     "db":"aibee",
     "client_id": YOUR_GOOGLE_CLIENT_ID,
-    "client_secret": YOUR_GOOGLE_CLIENT_SECRET_KEY
+    "client_secret": YOUR_GOOGLE_CLIENT_SECRET_KEY,
+    "project_id": YOUR_PROJECT_ID,
+    "private_key": YOUR_PRIVATE_KEY,
+    "client_email": YOUR_CLIENT_EMAIL
 };
 ```
