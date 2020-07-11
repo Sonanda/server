@@ -18,7 +18,7 @@ exports.getLink=async(req,res)=>{
                 'https://www.googleapis.com/auth/classroom.coursework.students.readonly'
             ]
     });
-    res.send(authUrl);
+    res.status(200).send({link:authUrl});
 }
 exports.getToken=async(req,res)=>{
     const client_secret=req.app.get('client_secret');
