@@ -13,15 +13,22 @@ exports.login=async(req,res)=>{
         where:{email:req.body.email}
     });
     if(docs.length>0){
-        const token=await jwt.sign(docs[0].dataValues,secret);
+        const token=await jwt.sign({
+            email: docs[0].dataValues.email,
+            type: docs[0].dataValues.s_type,
+            region: docs[0].dataValues.s_region,
+            name: docs[0].dataValues.s_name,
+            access_token: docs[0].dataValues.access_token,
+            refresh_toke: docs[0].dataValues.refresh_token
+        },secret);
         res.status(201).send({"x-access-token": token});
     } else{
         docs=await User.create({email:req.body.email});
         const token=await jwt.sign({
-            email: docs.dataValues.email,
-            s_type: null,
-            s_region: null,
-            s_name: null,
+            email: docs[0].dataValues.email,
+            type: null,
+            region: null,
+            name: null,
             access_token: null,
             refresh_toke: null
         },secret);
@@ -51,9 +58,9 @@ exports.updateData2=async(req,res)=>{
     const secret=req.app.get('jwt-secret');
     const update=await User.update({
         email: req.body.email,
-        s_type: req.body.type,
-        s_region: req.body.region,
-        s_name: req.body.name,
+        type: req.body.type,
+        region: req.body.region,
+        name: req.body.name,
         access_token: req.body.access_token,
         refresh_token: req.body.refresh_token
     },{where: {email:req.body.email}});
