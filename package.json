@@ -1,0 +1,31 @@
+{
+  "name": "rest-api",
+  "version": "1.0.0",
+  "description": "aibee rest-api",
+  "main": "app.js",
+  "dependencies": {
+    "dialogflow": "^1.2.0",
+    "express": "^4.17.1",
+    "googleapis": "^39.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.1.0",
+    "school-kr": "^3.1.1",
+    "sequelize": "^6.2.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sonanda/rest-api.git"
+  },
+  "author": "kimjaenam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sonanda/rest-api/issues"
+  },
+  "homepage": "https://github.com/Sonanda/rest-api#readme"
+}
