@@ -72,8 +72,8 @@ module.exports={
     "db":"aibee",
     "client_id": YOUR_GOOGLE_CLIENT_ID,
     "client_secret": YOUR_GOOGLE_CLIENT_SECRET_KEY,
-    "project_id": YOUR_PROJECT_ID,
-    "private_key": YOUR_PRIVATE_KEY,
-    "client_email": YOUR_CLIENT_EMAIL
+    "project_id": YOUR_DIALOGFLOW_PROJECT_ID,
+    "private_key": YOUR_DIALOGFLOW_PRIVATE_KEY,
+    "client_email": YOUR_DIALOGFLOW_CLIENT_EMAIL
 };
 ```
