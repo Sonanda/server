@@ -19,7 +19,7 @@ exports.login=async(req,res)=>{
             region: docs[0].dataValues.s_region,
             name: docs[0].dataValues.s_name,
             access_token: docs[0].dataValues.access_token,
-            refresh_toke: docs[0].dataValues.refresh_token
+            refresh_token: docs[0].dataValues.refresh_token
         },secret);
         res.status(201).send({"x-access-token": token});
     } else{
@@ -30,7 +30,7 @@ exports.login=async(req,res)=>{
             region: null,
             name: null,
             access_token: null,
-            refresh_toke: null
+            refresh_token: null
         },secret);
         res.status(201).send({"x-access-token": token});
     }
