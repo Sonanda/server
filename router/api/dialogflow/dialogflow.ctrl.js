@@ -7,7 +7,7 @@ exports.dialogflow=async(req,res)=>{
             client_email: req.app.get('client_email')
         }
     });
-    const sessionPath=await sessionAuthClient.sessionPath(req.app.get('project_id'),req.query.token);
+    const sessionPath=await sessionAuthClient.sessionPath(req.app.get('project_id'),req.app.get('jwt-secret'));
     const data=await sessionAuthClient.detectIntent({
         session: sessionPath,
         queryInput: {
@@ -17,5 +17,5 @@ exports.dialogflow=async(req,res)=>{
             }
         }
     });
-    res.send({text: data[0].queryResult.fulfillmentText});
+    res.send({text: data[0].queryResult});
 }

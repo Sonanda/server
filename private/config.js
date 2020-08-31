@@ -1,7 +1,7 @@
 module.exports={
     // DataBase
     "secret":"secretkey",
-    "host":"3.129.33.0",
+    "host":"sonanda.xyz",
     "user":"root",
     "pw":"Kk06120393@",
     "db":"aibee",
