@@ -17,5 +17,5 @@ exports.dialogflow=async(req,res)=>{
             }
         }
     });
-    res.send({text: data[0].queryResult});
+    res.send({text: data[0].queryResult.fulfillmentMessages});
 }
