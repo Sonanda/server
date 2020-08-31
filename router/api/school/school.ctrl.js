@@ -29,11 +29,8 @@ exports.getMeal=async(req,res)=>{
             석식:menus.slice(dinnerIndex+1)
         };
     }
-    if (req.query.day) {
-        req.query=meals[req.query.day];
-    } else {
-        req.query=meals;
-    }
+    if (req.query.day) req.query=meals[req.query.day];
+    else req.query=meals;
 
     res.status(200).send(req.query);
 }
@@ -54,11 +51,9 @@ exports.getSchedule=async(req,res)=>{
     delete calendar.year;
     delete calendar.month;
 
-    if(req.query.day){
-        req.query={"today":calendar[req.query.day]};
-    }else{
-        req.query=calendar;
-    }
+    if(req.query.day) req.query={"today":calendar[req.query.day]};
+    else req.query=calendar;
+
     res.status(200).send(req.query);
 }
 const convertSchool=req=>{

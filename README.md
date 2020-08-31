@@ -1,5 +1,10 @@
 # Sonanada REST API
-> - Developer : [woskaangel](https://github.com/woskaangel)
+![](https://img.shields.io/static/v1?label=node&message=v12.14.0&color=red)
+![](https://img.shields.io/static/v1?label=npm&message=v6.13.4&color=orange)
+![](https://img.shields.io/static/v1?label=mysql&message=v8.0.20&color=yellow)
+> - Developer
+> <table><tr><td align="center"><a href="https://github.com/woskaangel"><img src="https://avatars0.githubusercontent.com/u/52520428?s=460&v=4" width="100px;" alt=""/><br/<b>woskaangel</b></a></td><tr></table>
+>
 > - Languages
 >     - [한국어](#한국어)
 >     - [English](#english)
